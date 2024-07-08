@@ -1,0 +1,38 @@
+<%- include('layout/header') %>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mx-auto mt-4">
+                <div class="card shadow">
+                    <div class="card-header bg-secondary">
+                        <h3 class="text-light">Edit Shipping Order</h3>
+                    </div>
+                    <div class="card-body p-4">
+                        <form action="/update/<%= shipping._id %>" method="post" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="parcelService">Servicio de Paquetería:</label>
+                                <input type="text" id="parcelService" name="parcelService"
+                                    value="<%= shipping.parcelService %>" required />
+                            </div>
+                            <div class="mb-3">
+                                <label for="trackingNumber">Número de Rastreo:</label>
+                                <input type="text" id="trackingNumber" name="trackingNumber"
+                                    value="<%= shipping.trackingNumber %>" required />
+                            </div>
+                            <div class="mb-3">
+                                <label for="shippingDate">Fecha de Envío:</label>
+                                <input type="date" id="shippingDate" name="shippingDate"
+                                    value="<%= shipping.shippingDate.toISOString().substring(0, 10) %>" required />
+                            </div>
+                            <div class="mb-3 d-grid">
+                                <button type="submit" class="btn btn-secondary">Actualizar</button>
+                            </div>
+                        </form>
+                        <a href="/" class="btn btn-light">
+                            <i class="fas fa-arrow-left"></i> Regresar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<%- include('layout/footer') %>

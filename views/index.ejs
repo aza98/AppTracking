@@ -1,0 +1,45 @@
+<%- include('layout/header') %>
+<div class="container">
+    <h1>Lista de Envíos</h1>
+    <div class="table-responsive">
+        <table class="table table-striped text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Servicio de Paquetería</th>
+                    <th>Número de Rastreo</th>
+                    <th>Fecha de Envío</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% shipments.forEach((shipment, index) => { %>
+                <tr>
+                    <td><%= index + 1 %></td>
+                    <td><%= shipment.parcelService %></td>
+                    <td><%= shipment.trackingNumber %></td>
+                    <td><%= shipment.shippingDate.toDateString() %></td>
+                    <td>
+                        <a href="/edit/<%= shipment._id %>" class="success">
+                            <i class="fas fa-edit" style="color: #63e6be;"></i>
+                        </a>
+                        <a href="/delete/<%= shipment._id %>" class="trash">
+                            <i class="fa-solid fa-trash" style="color: #f01414;"></i>
+                        </a>
+                        <% if (shipment.parcelService === 'DHL') { %>
+                            <a href="/api/v3/shipments/tracking/<%= shipment.trackingNumber %>" class="info" target="_blank">
+                                <i class="fa-solid fa-info-circle" style="color: #17a2b8"></i>
+                            </a>
+                        <% } else if (shipment.parcelService === '99minutos') { %>
+                            <a href="/api/v3/shipments/tracking/<%= shipment.trackingNumber %>/99minutos" class="info">
+                                <i class="fa-solid fa-info-circle" style="color: #17a2b8"></i>
+                            </a>
+                        <% } %>
+                    </td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>
+<%- include('layout/footer') %>
