@@ -72,11 +72,12 @@ router.get("/api/v3/shipments/tracking/:trackingNumber", async (req, res, next) 
   try {
     const response = await fetch(url, {
       headers: {
-        "DHL-API-Key": "HlPoVXiWgXlynzXYA5AL7pfxCFWmJ4ba"
+        // Agrega la API key de DHL
+        "DHL-API-Key": "Add-API-Key"
       }
     });
     if (response.status === 401) {
-      res.set('WWW-Authenticate', 'Bearer realm="HlPoVXiWgXlynzXYA5AL7pfxCFWmJ4ba');
+      res.set('WWW-Authenticate', 'Bearer realm="Add-API-Key');
     }
     const data = await response.json();
     res.json(data);
@@ -92,7 +93,8 @@ router.get("/api/v3/shipments/tracking/:trackingNumber/99minutos", async (req, r
   try {
     const response = await fetch(url, {
       headers: {
-        "Authorization": "Bearer 4f88f1e1-1961-4b34-a912-89f1bc71a847"
+        // Agrega la API key de 99minutos
+        "Authorization": "Bearer Add-API-Key"
       }
     });
     const data = await response.json();
