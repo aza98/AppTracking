@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const shippingSchema = new mongoose.Schema({
     parcelService: {
@@ -15,4 +15,4 @@ const shippingSchema = new mongoose.Schema({
     },
 });
 
-module.exports = mongoose.model("Shipping", shippingSchema);
+module.exports = mongoose.model('Shipping', shippingSchema);
