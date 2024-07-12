@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "apptracking",
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
@@ -22,6 +22,7 @@
     "node-fetch": "^3.3.2"
   },
   "devDependencies": {
+    "@types/node": "^20.14.10",
     "nodemon": "^3.1.4"
   }
 }

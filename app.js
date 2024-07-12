@@ -1,32 +1,30 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
-const path = require("path");
-const app = express();
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
-// Conectar a MongoDB
+const app = express();
+const port = process.env.PORT || 3000;
+
+// Conexión a la base de datos
 mongoose.connect("mongodb://localhost:27017/Parcel");
 const db = mongoose.connection;
-db.on("error", console.error.bind(console, "MongoDB connection error:"));
+db.on("error", console.error.bind(console, "Error de conexión a MongoDB:"));
 db.once("open", () => {
-  console.log("Connected to MongoDB");
+  console.log("Conexión a MongoDB");
 });
 
-// Configuración de middleware
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  })
-);
-app.use(express.static("public"));
+// Middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+// Configuración de EJS como motor de plantillas
 app.set("view engine", "ejs");
 
-// Importar rutas
-const routes = require("./routes/routes");
-app.use("/", routes);
+// Rutas
+const routes = require('./routes/routes');
+app.use('/', routes);
 
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+// Iniciar el servidor
+app.listen(port, () => {
+    console.log(`El servidor se ejecuta en el puerto: http://localhost:${port}`);
 });

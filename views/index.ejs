@@ -13,31 +13,35 @@
                 </tr>
             </thead>
             <tbody>
-                <% shipments.forEach((shipment, index) => { %>
+                <% if (Array.isArray(shipments) && shipments.length > 0) { %> <% shipments.forEach((shipment, index) => { %>
                 <tr>
                     <td><%= index + 1 %></td>
                     <td><%= shipment.parcelService %></td>
                     <td><%= shipment.trackingNumber %></td>
                     <td><%= shipment.shippingDate.toDateString() %></td>
                     <td>
-                        <a href="/edit/<%= shipment._id %>" class="success">
-                            <i class="fas fa-edit" style="color: #63e6be;"></i>
+                        <a href="/edit/<%= shipment._id %>" class="btn btn-sm btn-outline-success me-1">
+                            <i class="fas fa-edit"></i>
                         </a>
-                        <a href="/delete/<%= shipment._id %>" class="trash">
-                            <i class="fa-solid fa-trash" style="color: #f01414;"></i>
+                        <a href="/delete/<%= shipment._id %>" class="btn btn-sm btn-outline-danger me-1">
+                            <i class="fas fa-trash"></i>
                         </a>
                         <% if (shipment.parcelService === 'DHL') { %>
-                            <a href="/api/v3/shipments/tracking/<%= shipment.trackingNumber %>" class="info" target="_blank">
-                                <i class="fa-solid fa-info-circle" style="color: #17a2b8"></i>
+                            <a href="/api/v3/shipments/tracking/<%= shipment.trackingNumber %>" class="btn btn-sm btn-outline-info me-1" target="_blank">
+                                <i class="fas fa-info-circle"></i>
                             </a>
                         <% } else if (shipment.parcelService === '99minutos') { %>
-                            <a href="/api/v3/shipments/tracking/<%= shipment.trackingNumber %>/99minutos" class="info">
-                                <i class="fa-solid fa-info-circle" style="color: #17a2b8"></i>
+                            <a href="/api/v3/shipments/tracking/<%= shipment.trackingNumber %>/99minutos" class="btn btn-sm btn-outline-info me-1">
+                                <i class="fas fa-info-circle"></i>
                             </a>
                         <% } %>
                     </td>
                 </tr>
-                <% }) %>
+                <% }) %> <% } else { %>
+                <tr>
+                    <td colspan="5">No hay envíos disponibles</td>
+                </tr>
+                <% } %>
             </tbody>
         </table>
     </div>
