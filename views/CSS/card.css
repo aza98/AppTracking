@@ -1,0 +1,11 @@
+.card {
+    border-radius: 2rem;
+}
+
+.card-header {
+    border-radius: 2rem 2rem 0 0;
+}
+
+.btn-outline-secondary {
+    border-radius: 50px;
+}

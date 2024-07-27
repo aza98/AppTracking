@@ -1,33 +1,47 @@
 <%- include('layout/header') %>
-<div class="container mt-4">
-    <div class="row">
-        <div class="col-lg-6 mx-auto">
-            <div class="card shadow">
-                <div class="card-header bg-secondary text-light">
-                    <h3>Editar Envío</h3>
-                </div>
-                <div class="card-body p-4">
-                    <form action="/update/<%= shipping._id %>" method="post">
-                        <div class="mb-3">
-                            <label for="parcelService" class="form-label">Servicio de Paquetería:</label>
-                            <input type="text" id="parcelService" name="parcelService" class="form-control" value="<%= shipping.parcelService %>" required />
-                        </div>
-                        <div class="mb-3">
-                            <label for="trackingNumber" class="form-label">Número de Rastreo:</label>
-                            <input type="text" id="trackingNumber" name="trackingNumber" class="form-control" value="<%= shipping.trackingNumber %>" required />
-                        </div>
-                        <div class="mb-3">
-                            <label for="shippingDate" class="form-label">Fecha de Envío:</label>
-                            <input type="date" id="shippingDate" name="shippingDate" class="form-control" value="<%= shipping.shippingDate %>" required />
-                        </div>
-                        <div class="d-grid mb-3">
-                            <button type="submit" class="btn btn-secondary">Actualizar</button>
-                        </div>
-                    </form>
-                    <a href="/" class="btn btn-light mt-2"><i class="fas fa-arrow-left"></i> Regresar</a>
+
+<link rel="stylesheet" href="css/card.css">
+
+    <div class="container">
+        <div class="row justify-content-center my-5">
+            <div class="col-lg-6 mx-auto">
+                <div class="card shadow-lg border-0 rounded-4">
+                    <div class="card-header bg-warning text-white text-center rounded-top-4">
+                        <h3 class="mb-0">Editar Envío</h3>
+                    </div>
+                    <div class="card-body p-4">
+                        <form action="/update/<%= shipping._id %>" method="post" class="needs-validation" novalidate>
+                            <div class="mb-3">
+                                <label for="parcelService" class="form-label">Servicio de Paquetería</label>
+                                <input type="text" id="parcelService" name="parcelService" class="form-control"
+                                    value="<%= shipping.parcelService %>" required>
+                                <div class="invalid-feedback">Por favor, ingresa el servicio de paquetería.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="trackingNumber" class="form-label">Número de Rastreo</label>
+                                <input type="text" id="trackingNumber" name="trackingNumber" class="form-control"
+                                    value="<%= shipping.trackingNumber %>" required>
+                                <div class="invalid-feedback">Por favor, ingresa el número de rastreo.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="shippingDate" class="form-label">Fecha de Envío</label>
+                                <input type="date" id="shippingDate" name="shippingDate" class="form-control"
+                                    value="<%= shipping.shippingDate.toISOString().split('T')[0] %>" required>
+                                <div class="invalid-feedback">Por favor, ingresa la fecha de envío.</div>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-warning rounded-pill btn-block">
+                                    <i class="fas fa-save me-2"></i>Actualizar
+                                </button>
+                            </div>
+                        </form>
+                        <a href="/" class="btn btn-outline-secondary rounded-pill mt-3">
+                            <i class="fas fa-arrow-left me-1"></i>Regresar
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+
 <%- include('layout/footer') %>

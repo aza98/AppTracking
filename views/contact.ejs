@@ -1,17 +1,23 @@
 <%- include('layout/header') %>
+
+<link rel="stylesheet" href="css/card.css">
+
 <main class="container">
-    <div class="row my-4">
-        <div class="col-lg-6 mx-auto mt-4">
-            <div class="card shadow">
-                <header class="card-header bg-dark text-light">
-                    <h3>Creado por</h3>
+    <div class="row justify-content-center my-5">
+        <div class="col-lg-6 mx-auto">
+            <div class="card shadow-lg border-0 rounded-4"> <!-- Rounded all corners -->
+                <header class="card-header bg-dark text-white text-center rounded-top-4"> <!-- Rounded top corners -->
+                    <h3 class="mb-0">Creado por</h3>
                 </header>
-                <div class="card-body p-4">
-                    <p class="font-weight-normal">Edgar A. R. G.</p>
-                    <a href="/" class="btn btn-light"> <i class="fas fa-arrow-left"></i> Regresar </a>
+                <div class="card-body p-4 text-center">
+                    <p class="font-weight-bold mb-4">Edgar A. R. G.</p>
+                    <a href="/" class="btn btn-outline-secondary rounded-pill mt-3">
+                        <i class="fas fa-arrow-left me-1"></i>Regresar
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 </main>
+
 <%- include('layout/footer') %>
