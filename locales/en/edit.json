@@ -1,0 +1,6 @@
+{
+  "eyebrow": "Editing #{{trackingNumber}}",
+  "title": "Edit shipment",
+  "subtitle": "Update the carrier, tracking number, or shipping date on file.",
+  "submit": "Update shipment"
+}

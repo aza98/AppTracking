@@ -1,0 +1,11 @@
+{
+  "searchPlaceholder": "Search manifest…",
+  "info": "Showing _START_–_END_ of _TOTAL_ shipments",
+  "infoEmpty": "No shipments to show",
+  "zeroRecords": "No shipments match your search",
+  "emptyTable": "No shipments available yet",
+  "paginateFirst": "<i class=\"fas fa-angles-left\"></i>",
+  "paginatePrevious": "<i class=\"fas fa-angle-left\"></i>",
+  "paginateNext": "<i class=\"fas fa-angle-right\"></i>",
+  "paginateLast": "<i class=\"fas fa-angles-right\"></i>"
+}

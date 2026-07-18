@@ -1,0 +1,18 @@
+{
+  "eyebrow": "Manifest",
+  "title": "Shipment ledger",
+  "shipmentsOnRecord_one": "{{count}} shipment on record",
+  "shipmentsOnRecord_other": "{{count}} shipments on record",
+  "columnIndex": "#",
+  "columnCarrier": "Carrier",
+  "columnTracking": "Tracking No.",
+  "columnShipped": "Shipped",
+  "columnActions": "Actions",
+  "editAria": "Edit",
+  "deleteAria": "Delete",
+  "trackDhlAria": "View DHL details",
+  "trackM99Aria": "View 99minutos details",
+  "trackGenericAria": "View shipment details",
+  "emptyTitle": "No shipments available yet",
+  "emptyCta": "Add your first shipment"
+}

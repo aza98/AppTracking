@@ -1,0 +1,11 @@
+{
+  "searchPlaceholder": "Buscar en el manifiesto…",
+  "info": "Mostrando _START_–_END_ de _TOTAL_ envíos",
+  "infoEmpty": "No hay envíos para mostrar",
+  "zeroRecords": "Ningún envío coincide con tu búsqueda",
+  "emptyTable": "Aún no hay envíos disponibles",
+  "paginateFirst": "<i class=\"fas fa-angles-left\"></i>",
+  "paginatePrevious": "<i class=\"fas fa-angle-left\"></i>",
+  "paginateNext": "<i class=\"fas fa-angle-right\"></i>",
+  "paginateLast": "<i class=\"fas fa-angles-right\"></i>"
+}

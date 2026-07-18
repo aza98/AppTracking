@@ -1,0 +1,45 @@
+<%- include('layout/header') %><main class="mx-auto w-full max-w-[1080px] px-6 pt-10 pb-16">
+    <div class="mb-7 flex flex-wrap items-end justify-between gap-6">
+        <div>
+            <p class="mb-1.5 font-mono text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-emerald-dark"><%= t('index:eyebrow') %></p>
+            <h1 class="font-display text-[2.1rem] font-bold uppercase leading-[0.95] tracking-wide text-ink-slate md:text-[2.75rem]"><%= t('index:title') %></h1>
+            <p class="mt-1.5 font-mono text-[0.8rem] text-ink-400"><%= t('index:shipmentsOnRecord', { count: Array.isArray(shipments) ? shipments.length : 0 }) %></p>
+        </div><% if (Array.isArray(shipments) && shipments.length > 0) { %><a href="/new" class="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-accent px-6 py-3 text-sm font-semibold text-white shadow-mf-sm transition hover:-translate-y-px hover:bg-emerald-dark hover:shadow-mf-md"><i class="fas fa-plus"></i><%= t('nav:addShipment') %></a><% } %>
+    </div>
+    <div class="animate-rise overflow-hidden rounded-mf-lg border border-border bg-surface shadow-mf-md">
+        <table class="w-full border-collapse">
+            <thead class="hidden md:table-header-group">
+                <tr>
+                    <th class="border-b-2 border-emerald-accent/20 bg-canvas-bg px-5 py-3.5 text-left font-mono text-[0.7rem] font-bold uppercase tracking-[0.08em] text-ink-400"><%= t('index:columnIndex') %></th>
+                    <th class="border-b-2 border-emerald-accent/20 bg-canvas-bg px-5 py-3.5 text-left font-mono text-[0.7rem] font-bold uppercase tracking-[0.08em] text-ink-400"><%= t('index:columnCarrier') %></th>
+                    <th class="border-b-2 border-emerald-accent/20 bg-canvas-bg px-5 py-3.5 text-left font-mono text-[0.7rem] font-bold uppercase tracking-[0.08em] text-ink-400"><%= t('index:columnTracking') %></th>
+                    <th class="border-b-2 border-emerald-accent/20 bg-canvas-bg px-5 py-3.5 text-left font-mono text-[0.7rem] font-bold uppercase tracking-[0.08em] text-ink-400"><%= t('index:columnShipped') %></th>
+                    <th class="border-b-2 border-emerald-accent/20 bg-canvas-bg px-5 py-3.5 text-right font-mono text-[0.7rem] font-bold uppercase tracking-[0.08em] text-ink-400"><%= t('index:columnActions') %></th>
+                </tr>
+            </thead>
+            <tbody><% if (Array.isArray(shipments) && shipments.length > 0) { %><% shipments.forEach((shipment, index) => { %><% const carrierKey = (shipment.parcelService || '').trim().toUpperCase(); %><% const badgeColors = carrierKey === 'DHL' ? 'bg-dhl-bg text-dhl-text' : (carrierKey.includes('99') ? 'bg-m99-bg text-m99-text' : 'bg-other-bg text-other-text'); %><% const badgeDot = carrierKey === 'DHL' ? 'bg-dhl-dot' : (carrierKey.includes('99') ? 'bg-m99-dot' : 'bg-other-dot'); %><% const railColor = carrierKey === 'DHL' ? 'border-l-dhl-dot' : (carrierKey.includes('99') ? 'border-l-m99-dot' : 'border-l-other-dot'); %><tr class="mx-4 my-3 block rounded-lg border border-border <%= railColor %> border-l-4 px-4 transition-colors md:mx-0 md:my-0 md:table-row md:rounded-none md:border-0 md:border-b md:border-border <%= railColor %> md:border-l-4 md:px-0 md:last:border-b-0 md:hover:bg-canvas-bg">
+                    <td class="flex items-center justify-between gap-4 border-b border-dashed border-border py-2 last:border-none md:table-cell md:justify-start md:border-b-0 md:px-5 md:py-3.5 md:align-middle"><span class="text-[0.68rem] font-bold uppercase tracking-wide text-ink-400 md:hidden"><%= t('index:columnIndex') %></span><span class="font-mono text-[0.78rem] font-semibold uppercase tracking-wide text-ink-400">No. <%= String(index + 1).padStart(3, '0') %></span></td>
+                    <td class="flex items-center justify-between gap-4 border-b border-dashed border-border py-2 last:border-none md:table-cell md:justify-start md:border-b-0 md:px-5 md:py-3.5 md:align-middle"><span class="text-[0.68rem] font-bold uppercase tracking-wide text-ink-400 md:hidden"><%= t('index:columnCarrier') %></span><span class="inline-flex items-center gap-1.5 rounded-full py-1.5 pl-2.5 pr-3 font-mono text-[0.72rem] font-semibold uppercase tracking-wide ring-1 ring-inset ring-black/5 transition-transform hover:-rotate-1 hover:scale-105 <%= badgeColors %>"><span class="h-[7px] w-[7px] shrink-0 rounded-full <%= badgeDot %>"></span><%= shipment.parcelService %></span></td>
+                    <td class="flex items-center justify-between gap-4 border-b border-dashed border-border py-2 last:border-none md:table-cell md:justify-start md:border-b-0 md:px-5 md:py-3.5 md:align-middle"><span class="text-[0.68rem] font-bold uppercase tracking-wide text-ink-400 md:hidden"><%= t('index:columnTracking') %></span><span class="font-mono font-medium tracking-wide text-ink-slate"><%= shipment.trackingNumber %></span></td>
+                    <td class="flex items-center justify-between gap-4 border-b border-dashed border-border py-2 last:border-none md:table-cell md:justify-start md:border-b-0 md:px-5 md:py-3.5 md:align-middle"><span class="text-[0.68rem] font-bold uppercase tracking-wide text-ink-400 md:hidden"><%= t('index:columnShipped') %></span><span class="font-mono text-[0.82rem] text-ink-700"><%= new Date(shipment.shippingDate).toISOString().slice(0, 10) %></span></td>
+                    <td class="flex items-center justify-end gap-1.5 border-t border-dashed border-border py-2 md:table-cell md:border-t-0 md:px-5 md:py-3.5 md:text-right md:align-middle">
+                        <div class="flex items-center justify-end gap-1.5"><a href="/edit/<%= shipment._id %>" class="inline-flex h-[34px] w-[34px] items-center justify-center rounded-lg border border-border bg-surface text-[0.85rem] text-ink-700 transition hover:-translate-y-px hover:border-emerald-accent hover:bg-emerald-soft hover:text-emerald-dark hover:shadow-mf-sm" aria-label="<%= t('index:editAria') %>"><i class="fas fa-edit"></i></a><a href="/delete/<%= shipment._id %>" class="inline-flex h-[34px] w-[34px] items-center justify-center rounded-lg border border-border bg-surface text-[0.85rem] text-ink-700 transition hover:-translate-y-px hover:border-danger hover:bg-danger-soft hover:text-danger-dark hover:shadow-mf-sm" aria-label="<%= t('index:deleteAria') %>" data-confirm="<%= t('common:confirmDelete') %>"><i class="fas fa-trash"></i></a><a href="/track/<%= shipment._id %>" class="inline-flex h-[34px] w-[34px] items-center justify-center rounded-lg border border-border bg-surface text-[0.85rem] text-ink-700 transition hover:-translate-y-px hover:border-ink-700 hover:bg-canvas-bg hover:text-ink-slate hover:shadow-mf-sm" aria-label="<%= carrierKey === 'DHL' ? t('index:trackDhlAria') : (carrierKey.includes('99') ? t('index:trackM99Aria') : t('index:trackGenericAria')) %>"><i class="fas fa-info-circle"></i></a></div>
+                    </td>
+                </tr><% }) %><% } else { %><tr class="ledger-empty-state">
+                    <td colspan="5" class="px-6 py-16">
+                        <div class="mx-auto flex max-w-xs flex-col items-center gap-3 rounded-mf-lg border border-dashed border-border-strong bg-canvas-bg/60 px-6 py-10 text-center">
+                            <i class="fas fa-box-open text-2xl text-ink-400"></i>
+                            <p class="text-[0.92rem] text-ink-700"><%= t('index:emptyTitle') %></p><a href="/new" class="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-accent px-4 py-2 text-[0.82rem] font-semibold text-white shadow-mf-sm transition hover:-translate-y-px hover:bg-emerald-dark hover:shadow-mf-md"><i class="fas fa-plus"></i><%= t('index:emptyCta') %></a>
+                        </div>
+                    </td>
+                </tr><% } %></tbody>
+        </table>
+    </div>
+</main><%- include('layout/footer') %><script>
+    document.querySelector('table')?.addEventListener('click', function(e) {
+        var link = e.target.closest('[data-confirm]');
+        if (link && !confirm(link.dataset.confirm)) {
+            e.preventDefault();
+        }
+    });
+</script>

@@ -1,0 +1,50 @@
+<%- include('layout/header') %><main class="mx-auto w-full max-w-[760px] px-6 pt-10 pb-16"><a href="/" class="mb-5 inline-flex items-center gap-2 text-sm font-medium text-ink-400 transition-colors hover:text-ink-slate"><i class="fas fa-arrow-left"></i><%= t('common:backToManifest') %></a>
+    <% const carrierKey = (shipment.parcelService || '').trim().toUpperCase(); %>
+    <% const badgeColors = carrierKey === 'DHL' ? 'bg-dhl-bg text-dhl-text' : (carrierKey.includes('99') ? 'bg-m99-bg text-m99-text' : 'bg-other-bg text-other-text'); %>
+    <% const badgeDot = carrierKey === 'DHL' ? 'bg-dhl-dot' : (carrierKey.includes('99') ? 'bg-m99-dot' : 'bg-other-dot'); %>
+    <div class="mb-7">
+        <p class="mb-1.5 font-mono text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-emerald-dark"><%= t('tracking:eyebrow') %></p>
+        <div class="flex flex-wrap items-center gap-3"><h1 class="break-all font-display text-[2rem] font-bold uppercase leading-none tracking-wide text-ink-slate md:text-[2.4rem]"><%= shipment.trackingNumber %></h1><span class="inline-flex shrink-0 items-center gap-1.5 rounded-full py-1.5 pl-2.5 pr-3 font-mono text-[0.72rem] font-semibold uppercase tracking-wide ring-1 ring-inset ring-black/5 <%= badgeColors %>"><span class="h-[7px] w-[7px] shrink-0 rounded-full <%= badgeDot %>"></span><%= shipment.parcelService %></span></div>
+        <p class="mt-1.5 font-mono text-[0.8rem] text-ink-400"><%= t('tracking:shippedLabel') %> · <%= new Date(shipment.shippingDate).toISOString().slice(0, 10) %></p>
+    </div>
+
+    <% if (dto) { %><div class="animate-rise overflow-hidden rounded-mf-lg border border-border bg-surface shadow-mf-md">
+        <div class="border-b border-border bg-canvas-bg px-6 py-5">
+            <p class="font-mono text-[0.7rem] font-bold uppercase tracking-[0.08em] text-ink-400"><%= t('tracking:statusLabel') %></p>
+            <p class="mt-1 font-display text-xl font-bold uppercase text-ink-slate"><%= dto.status && (dto.status.description || dto.status.code) || '—' %></p>
+            <% if (dto.status && dto.status.timestamp) { %><p class="mt-0.5 font-mono text-[0.78rem] text-ink-400"><%= dto.status.timestamp.replace('T', ' ') %></p><% } %>
+        </div>
+        <% if (dto.origin || dto.destination || dto.estimatedDelivery) { %><div class="grid grid-cols-1 gap-4 border-b border-dashed border-border px-6 py-5 sm:grid-cols-3">
+            <% if (dto.origin) { %><div><p class="font-mono text-[0.68rem] font-bold uppercase tracking-wide text-ink-400"><%= t('tracking:originLabel') %></p><p class="mt-0.5 text-[0.9rem] text-ink-slate"><%= dto.origin %></p></div><% } %>
+            <% if (dto.destination) { %><div><p class="font-mono text-[0.68rem] font-bold uppercase tracking-wide text-ink-400"><%= t('tracking:destinationLabel') %></p><p class="mt-0.5 text-[0.9rem] text-ink-slate"><%= dto.destination %></p></div><% } %>
+            <% if (dto.estimatedDelivery) { %><div><p class="font-mono text-[0.68rem] font-bold uppercase tracking-wide text-ink-400"><%= t('tracking:estimatedDeliveryLabel') %></p><p class="mt-0.5 text-[0.9rem] text-ink-slate"><%= dto.estimatedDelivery %></p></div><% } %>
+        </div><% } %>
+        <div class="px-6 py-6">
+            <p class="mb-4 font-mono text-[0.7rem] font-bold uppercase tracking-[0.08em] text-ink-400"><%= t('tracking:checkpointsTitle') %></p>
+            <% const checkpoints = (dto.checkpoints || []).slice().sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)); %>
+            <% if (checkpoints.length > 0) { %><ol class="relative ml-1.5 border-l-2 border-dashed border-border pl-6">
+                <% checkpoints.forEach((cp, i) => { %><li class="relative pb-6 last:pb-0"><span class="absolute -left-[1.78rem] top-1 h-[10px] w-[10px] rounded-full ring-4 ring-surface <%= i === 0 ? badgeDot : 'bg-border-strong' %>"></span>
+                    <p class="font-mono text-[0.72rem] text-ink-400"><%= (cp.timestamp || '').replace('T', ' ') %></p>
+                    <p class="mt-0.5 text-[0.88rem] font-semibold text-ink-slate"><%= cp.status || cp.statusCode || '—' %></p>
+                    <% if (cp.location) { %><p class="mt-0.5 text-[0.8rem] text-ink-700"><%= cp.location %></p><% } %>
+                    <% if (cp.comment) { %><p class="mt-0.5 text-[0.8rem] text-ink-700"><%= cp.comment %></p><% } %></li><% }) %>
+            </ol><% } else { %><p class="text-[0.88rem] text-ink-400"><%= t('tracking:noCheckpoints') %></p><% } %>
+        </div>
+    </div>
+
+    <% } else if (error) { %><div class="animate-rise overflow-hidden rounded-mf-lg border border-border bg-surface shadow-mf-md">
+        <div class="bg-danger px-6 py-5 text-white"><i class="fas fa-triangle-exclamation mb-2 block text-xl"></i>
+            <h2 class="font-display text-lg font-bold uppercase"><%= t('tracking:errorTitle') %></h2>
+            <p class="mt-1 text-[0.9rem] text-white/90"><%= error.message %></p>
+        </div>
+        <% if (error.detail || error.traceId) { %><div class="space-y-4 px-6 py-6">
+            <% if (error.detail) { %><div><p class="font-mono text-[0.68rem] font-bold uppercase tracking-wide text-ink-400"><%= t('tracking:carrierResponseLabel') %></p><p class="mt-1 rounded-lg border border-border bg-canvas-bg px-3.5 py-2.5 font-mono text-[0.82rem] text-ink-700"><%= error.detail %></p></div><% } %>
+            <% if (error.traceId) { %><div><p class="font-mono text-[0.68rem] font-bold uppercase tracking-wide text-ink-400"><%= t('tracking:traceIdLabel') %></p><p class="mt-1 font-mono text-[0.82rem] text-ink-700"><%= error.traceId %></p></div><% } %>
+        </div><% } %>
+    </div>
+
+    <% } else if (unsupported) { %><div class="animate-rise flex flex-col items-center gap-3 rounded-mf-lg border border-dashed border-border-strong bg-canvas-bg/60 px-6 py-12 text-center shadow-mf-sm"><i class="fas fa-circle-info text-2xl text-ink-400"></i>
+        <p class="font-semibold text-ink-slate"><%= t('tracking:unsupportedTitle') %></p>
+        <p class="max-w-sm text-[0.88rem] text-ink-400"><%= t('tracking:unsupportedBody') %></p>
+    </div><% } %>
+</main><%- include('layout/footer') %>

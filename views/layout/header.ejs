@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="<%= language %>">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= t('common:siteTitle') %></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css" integrity="sha512-ApSLB1Pd3/bZN8fWB/RG9YhN/7bd9Hkf3AGaE2mPfebjrxagjuBtx2GcgdqIlJkUzwylBo61r9Xa9NmgBI0swA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss"> @theme { --color-ink-slate: #10151C; --color-canvas-bg: #F3F5F8; --color-emerald-accent: #0B8C6E; --color-ink-800: #1B2230; --color-ink-700: #3C4658; --color-ink-400: #8891A3; --color-surface: #FFFFFF; --color-border: #E3E7ED; --color-border-strong: #CBD2DC; --color-emerald-dark: #086B54; --color-emerald-soft: #E3F5EF; --color-danger: #D6432E; --color-danger-dark: #B23421; --color-danger-soft: #FBEAE7; --color-dhl-bg: #FFF4CC; --color-dhl-text: #8A0E1D; --color-dhl-dot: #D40511; --color-m99-bg: #FFE3ED; --color-m99-text: #A0114A; --color-m99-dot: #FF1F6D; --color-other-bg: #EEF0F4; --color-other-text: #4B5565; --color-other-dot: #8891A3; --font-display: "Big Shoulders Display", "Arial Narrow", sans-serif; --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace; --radius-mf-lg: 20px; --shadow-mf-sm: 0 1px 2px rgba(16, 21, 28, 0.06); --shadow-mf-md: 0 8px 24px -8px rgba(16, 21, 28, 0.16); --shadow-mf-lg: 0 20px 48px -16px rgba(16, 21, 28, 0.26); --animate-rise: mf-rise 0.4s ease both; @keyframes mf-rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } } } @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } } </style>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.8/css/dataTables.tailwindcss.css">
+    <style>
+        @media (max-width: 640px) {
+            .dt-container>.grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dt-container>.grid>.col-start-2 {
+                grid-column-start: auto;
+                justify-self: stretch;
+            }
+        }
+    </style>
+</head>
+
+<body class="m-0 bg-canvas-bg font-body text-[15px] leading-relaxed text-ink-slate antialiased">
+    <nav class="relative border-b-[3px] border-emerald-accent bg-gradient-to-b from-ink-800 to-ink-slate">
+        <div class="mx-auto flex h-[68px] max-w-[1080px] items-center justify-between px-6"><a href="/" class="flex items-center gap-2 font-display text-2xl font-bold uppercase tracking-wide text-white"><i class="fas fa-truck-fast text-lg text-emerald-accent"></i>AppTracking </a><button id="navToggle" type="button" aria-controls="navMenu" aria-expanded="false" aria-label="<%= t('nav:toggleNavigation') %>" class="flex h-10 w-10 items-center justify-center rounded-lg border border-white/20 text-white md:hidden"><i class="fas fa-bars"></i></button>
+            <ul id="navMenu" class="hidden absolute inset-x-0 top-[68px] flex-col items-stretch gap-0 border-b-[3px] border-emerald-accent bg-ink-slate px-5 py-2 md:static md:flex md:flex-row md:items-center md:gap-1 md:border-none md:bg-transparent md:p-0">
+                <li><a href="/" class="flex items-center gap-2 rounded-full px-3.5 py-3 text-sm font-medium text-white/70 transition-colors hover:bg-white/10 hover:text-white md:py-2"><i class="fas fa-list"></i><%= t('nav:home') %></a></li>
+                <li><a href="/new" class="flex items-center gap-2 rounded-full px-3.5 py-3 text-sm font-medium text-white/70 transition-colors hover:bg-white/10 hover:text-white md:py-2"><i class="fas fa-plus"></i><%= t('nav:addShipment') %></a></li>
+                <li><a href="/contact" class="flex items-center gap-2 rounded-full px-3.5 py-3 text-sm font-medium text-white/70 transition-colors hover:bg-white/10 hover:text-white md:py-2"><i class="fas fa-envelope"></i><%= t('nav:contact') %></a></li>
+                <li class="mt-1 flex items-center gap-0.5 rounded-full border border-white/20 p-0.5 md:ml-2 md:mt-0"><a href="/lang/en?redirect=<%= encodeURIComponent(currentUrl) %>" class="rounded-full px-2.5 py-1.5 font-mono text-[0.7rem] font-semibold uppercase tracking-wide transition-colors md:py-1 <%= language === 'en' ? 'bg-emerald-accent text-white' : 'text-white/60 hover:text-white' %>" aria-current="<%= language === 'en' ? 'true' : 'false' %>">EN</a><a href="/lang/es?redirect=<%= encodeURIComponent(currentUrl) %>" class="rounded-full px-2.5 py-1.5 font-mono text-[0.7rem] font-semibold uppercase tracking-wide transition-colors md:py-1 <%= language === 'es' ? 'bg-emerald-accent text-white' : 'text-white/60 hover:text-white' %>" aria-current="<%= language === 'es' ? 'true' : 'false' %>">ES</a></li>
+            </ul>
+        </div>
+    </nav>
+    <script>
+        (function() {
+            var navToggle = document.getElementById('navToggle');
+            var navMenu = document.getElementById('navMenu');
+            navToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('hidden');
+                navMenu.classList.toggle('flex');
+                var expanded = navMenu.classList.contains('flex');
+                navToggle.setAttribute('aria-expanded', String(expanded));
+            });
+        })();
+    </script>

@@ -1,0 +1,18 @@
+{
+  "eyebrow": "Manifiesto",
+  "title": "Registro de envíos",
+  "shipmentsOnRecord_one": "{{count}} envío registrado",
+  "shipmentsOnRecord_other": "{{count}} envíos registrados",
+  "columnIndex": "#",
+  "columnCarrier": "Paquetería",
+  "columnTracking": "N.º de Rastreo",
+  "columnShipped": "Enviado",
+  "columnActions": "Acciones",
+  "editAria": "Editar",
+  "deleteAria": "Eliminar",
+  "trackDhlAria": "Ver detalles DHL",
+  "trackM99Aria": "Ver detalles 99minutos",
+  "trackGenericAria": "Ver detalles del envío",
+  "emptyTitle": "Aún no hay envíos disponibles",
+  "emptyCta": "Agrega tu primer envío"
+}

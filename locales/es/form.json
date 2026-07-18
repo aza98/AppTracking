@@ -1,0 +1,10 @@
+{
+  "carrierLabel": "Paquetería",
+  "carrierHint": "Elige la paquetería que maneja este envío.",
+  "selectCarrierPlaceholder": "Selecciona una paquetería",
+  "trackingLabel": "Número de rastreo",
+  "trackingPlaceholder": "ej. 4211 8873 0192",
+  "trackingHint": "Cópialo exactamente como aparece en la etiqueta de la paquetería.",
+  "shippingDateLabel": "Fecha de envío",
+  "shippingDateHint": "La fecha en que el paquete salió del almacén."
+}

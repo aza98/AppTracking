@@ -1,0 +1,6 @@
+{
+  "eyebrow": "Editando #{{trackingNumber}}",
+  "title": "Editar envío",
+  "subtitle": "Actualiza la paquetería, el número de rastreo o la fecha de envío registrados.",
+  "submit": "Actualizar envío"
+}

@@ -1,0 +1,16 @@
+{
+  "DHL_UNAUTHORIZED": "DHL rechazó las credenciales de API configuradas.",
+  "DHL_NOT_FOUND": "No se encontró ningún envío con ese número de rastreo.",
+  "DHL_RATE_LIMITED": "Se superó la cuota de rastreo de DHL. Intenta de nuevo en unos minutos.",
+  "DHL_UPSTREAM_ERROR": "El servicio de rastreo de DHL no está disponible en este momento.",
+  "DHL_REQUEST_FAILED": "DHL rechazó la solicitud de rastreo.",
+  "DHL_TIMEOUT": "La solicitud a DHL agotó el tiempo de espera.",
+  "DHL_NETWORK_ERROR": "No se pudo conectar con el servicio de rastreo de DHL.",
+  "M99_UNAUTHORIZED": "99minutos rechazó las credenciales de API configuradas.",
+  "M99_NOT_FOUND": "No se encontró ningún envío con ese número de rastreo.",
+  "M99_RATE_LIMITED": "Se superó la cuota de rastreo de 99minutos. Intenta de nuevo en unos minutos.",
+  "M99_UPSTREAM_ERROR": "El servicio de rastreo de 99minutos no está disponible en este momento.",
+  "M99_REQUEST_FAILED": "99minutos rechazó la solicitud de rastreo.",
+  "M99_TIMEOUT": "La solicitud a 99minutos agotó el tiempo de espera.",
+  "M99_NETWORK_ERROR": "No se pudo conectar con el servicio de rastreo de 99minutos."
+}

@@ -1,0 +1,103 @@
+<script src="https://code.jquery.com/jquery-4.0.0.min.js" integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/2.3.8/js/dataTables.js" integrity="sha384-psSvVXCvq5rKxaGCE/6++WaL+UPL386fLbcVoODJQQOf/3XrJWK16KQTO/kkFXGm" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/2.3.8/js/dataTables.tailwindcss.js" integrity="sha384-V6wr6XDa6aP8S0UYafArTii37evyZeiz+RsBoqfn2Ix1xZ5NGXsuZk3Tc4HBYZ4F" crossorigin="anonymous"></script>
+<style>
+    .ledger-toolbar > .grid {
+        margin-bottom: 0;
+    }
+
+    .ledger-toolbar > .grid:not(:has(table)) {
+        padding: 0.9rem 1.25rem;
+        align-items: center;
+    }
+
+    .ledger-search-input {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238891A3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'%3E%3C/line%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: 12px center;
+        background-size: 14px 14px;
+    }
+</style>
+<script type="application/json" id="datatable-i18n"><%- JSON.stringify({
+    searchPlaceholder: t('datatable:searchPlaceholder'),
+    paginateFirst: t('datatable:paginateFirst'),
+    paginatePrevious: t('datatable:paginatePrevious'),
+    paginateNext: t('datatable:paginateNext'),
+    paginateLast: t('datatable:paginateLast'),
+    info: t('datatable:info'),
+    infoEmpty: t('datatable:infoEmpty'),
+    zeroRecords: t('datatable:zeroRecords'),
+    emptyTable: t('datatable:emptyTable')
+}) %></script>
+<script>
+    const datatableI18n = JSON.parse(document.getElementById("datatable-i18n").textContent);
+    $.extend(true, $.fn.dataTable.ext.classes, {
+        container: "dt-container dt-tailwindcss ledger-toolbar",
+        search: {
+            container: "relative",
+            input: "ledger-search-input w-full rounded-lg border border-border-strong bg-surface py-2 pl-9 pr-3.5 font-body text-[0.85rem] text-ink-slate placeholder-ink-400 transition focus:border-emerald-accent focus:outline-none focus:ring-[3px] focus:ring-emerald-soft"
+        },
+        info: {
+            container: "font-mono text-[0.75rem] uppercase tracking-wide text-ink-400"
+        },
+        empty: {
+            row: "border-t border-dashed border-border-strong bg-canvas-bg/40 px-6 py-10 text-center font-body text-[0.88rem] text-ink-400"
+        },
+        paging: {
+            button: "inline-flex min-w-[30px] items-center justify-center rounded-lg border mx-0.5 px-2 py-1 font-mono text-[0.8rem] transition-colors",
+            active: "font-semibold bg-emerald-accent! text-white! border-emerald-accent!",
+            notActive: "bg-surface",
+            enabled: "border-border-strong text-ink-700 hover:border-emerald-accent hover:bg-canvas-bg hover:text-ink-slate focus:outline-none focus:ring-2 focus:ring-emerald-soft",
+            notEnabled: "border-transparent text-ink-400 opacity-60 cursor-default"
+        },
+        table: "dataTable",
+        thead: {
+            row: "",
+            cell: ""
+        },
+        tbody: {
+            row: "",
+            cell: ""
+        },
+        tfoot: {
+            row: "",
+            cell: ""
+        }
+    });
+    $(document).ready(function() {
+        if ($("table .ledger-empty-state").length) {
+            return;
+        }
+        $("table").DataTable({
+            order: [
+                [0, "desc"]
+            ],
+            lengthChange: false,
+            pageLength: 8,
+            layout: {
+                topStart: null,
+                topEnd: "search",
+                bottomStart: "info",
+                bottomEnd: "paging"
+            },
+            language: {
+                search: "",
+                searchPlaceholder: datatableI18n.searchPlaceholder,
+                paginate: {
+                    first: datatableI18n.paginateFirst,
+                    previous: datatableI18n.paginatePrevious,
+                    next: datatableI18n.paginateNext,
+                    last: datatableI18n.paginateLast
+                },
+                info: datatableI18n.info,
+                infoEmpty: datatableI18n.infoEmpty,
+                infoFiltered: "",
+                zeroRecords: datatableI18n.zeroRecords,
+                emptyTable: datatableI18n.emptyTable
+            }
+        });
+    });
+</script>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+{
+  "eyebrow": "Rastreo en vivo",
+  "trackingNumberLabel": "Número de rastreo",
+  "carrierLabel": "Paquetería",
+  "shippedLabel": "Enviado",
+  "statusLabel": "Estado",
+  "estimatedDeliveryLabel": "Entrega estimada",
+  "originLabel": "Origen",
+  "destinationLabel": "Destino",
+  "checkpointsTitle": "Historial de rastreo",
+  "noCheckpoints": "Aún no hay historial de rastreo disponible.",
+  "errorTitle": "No se pudo contactar a la paquetería",
+  "carrierResponseLabel": "Respuesta de la paquetería",
+  "traceIdLabel": "ID de rastreo",
+  "unsupportedTitle": "El rastreo en vivo no está disponible",
+  "unsupportedBody": "Aún no tenemos integración de rastreo en vivo para esta paquetería. Esto es lo que tenemos registrado."
+}

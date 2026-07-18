@@ -1,0 +1,16 @@
+{
+  "DHL_UNAUTHORIZED": "DHL rejected the configured API credentials.",
+  "DHL_NOT_FOUND": "No shipment was found for that tracking number.",
+  "DHL_RATE_LIMITED": "DHL tracking quota exceeded. Please try again shortly.",
+  "DHL_UPSTREAM_ERROR": "DHL's tracking service is currently unavailable.",
+  "DHL_REQUEST_FAILED": "DHL rejected the tracking request.",
+  "DHL_TIMEOUT": "The request to DHL timed out.",
+  "DHL_NETWORK_ERROR": "Could not reach the DHL tracking service.",
+  "M99_UNAUTHORIZED": "99minutos rejected the configured API credentials.",
+  "M99_NOT_FOUND": "No shipment was found for that tracking number.",
+  "M99_RATE_LIMITED": "99minutos tracking quota exceeded. Please try again shortly.",
+  "M99_UPSTREAM_ERROR": "99minutos' tracking service is currently unavailable.",
+  "M99_REQUEST_FAILED": "99minutos rejected the tracking request.",
+  "M99_TIMEOUT": "The request to 99minutos timed out.",
+  "M99_NETWORK_ERROR": "Could not reach the 99minutos tracking service."
+}

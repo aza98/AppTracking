@@ -1,0 +1,10 @@
+{
+  "carrierLabel": "Carrier",
+  "carrierHint": "Choose the courier handling this parcel.",
+  "selectCarrierPlaceholder": "Select a carrier",
+  "trackingLabel": "Tracking number",
+  "trackingPlaceholder": "e.g. 4211 8873 0192",
+  "trackingHint": "Copy this exactly as it appears on the carrier's label.",
+  "shippingDateLabel": "Shipping date",
+  "shippingDateHint": "The date the parcel left the warehouse."
+}

@@ -1,0 +1,10 @@
+<%- include('layout/header') %><main class="mx-auto w-full max-w-[640px] px-6 pt-10 pb-16">
+    <div class="animate-rise overflow-hidden rounded-mf-lg border border-border bg-surface text-center shadow-mf-md">
+        <div class="bg-danger px-6 pb-6 pt-8 text-white"><i class="fas fa-triangle-exclamation mb-2.5 block text-2xl"></i>
+            <h1 class="font-display text-2xl font-bold uppercase"><%= t('error:title') %></h1>
+        </div>
+        <div class="px-7 py-8">
+            <p class="mb-6 text-ink-700"><%= message %></p><a href="/" class="inline-flex items-center justify-center gap-2 rounded-full border border-border-strong bg-transparent px-6 py-3 text-sm font-semibold text-ink-700 transition hover:border-ink-700 hover:bg-canvas-bg"><i class="fas fa-arrow-left"></i><%= t('common:back') %></a>
+        </div>
+    </div>
+</main><%- include('layout/footer') %>

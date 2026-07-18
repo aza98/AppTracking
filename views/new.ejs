@@ -1,0 +1,24 @@
+<%- include('layout/header') %><main class="mx-auto w-full max-w-[640px] px-6 pt-10 pb-16"><a href="/" class="mb-5 inline-flex items-center gap-2 text-sm font-medium text-ink-400 transition-colors hover:text-ink-slate"><i class="fas fa-arrow-left"></i><%= t('common:backToManifest') %></a>
+    <div class="animate-rise rounded-mf-lg border border-border bg-surface p-6 shadow-mf-md md:p-9">
+        <div class="mb-7">
+            <p class="mb-1.5 font-mono text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-emerald-dark"><%= t('new:eyebrow') %></p>
+            <h1 class="mt-0.5 font-display text-[2.1rem] font-bold uppercase leading-none text-ink-slate"><%= t('new:title') %></h1>
+            <p class="mt-2 text-[0.88rem] text-ink-400"><%= t('new:subtitle') %></p>
+        </div>
+        <form action="/add" method="post" class="flex flex-col gap-[1.35rem]">
+            <div class="flex flex-col"><label for="parcelService" class="mb-1.5 text-[0.82rem] font-semibold text-ink-slate"><%= t('form:carrierLabel') %></label><select id="parcelService" name="parcelService" class="w-full rounded-lg border border-border-strong bg-surface px-[0.95rem] py-3 font-body text-[0.92rem] text-ink-slate transition focus:border-emerald-accent focus:outline-none focus:ring-[3px] focus:ring-emerald-soft" required>
+                    <option value="" disabled selected><%= t('form:selectCarrierPlaceholder') %></option>
+                    <option value="DHL">DHL</option>
+                    <option value="99minutos">99minutos</option>
+                </select>
+                <p class="mt-1.5 text-[0.78rem] text-ink-400"><%= t('form:carrierHint') %></p>
+            </div>
+            <div class="flex flex-col"><label for="trackingNumber" class="mb-1.5 text-[0.82rem] font-semibold text-ink-slate"><%= t('form:trackingLabel') %></label><input type="text" id="trackingNumber" name="trackingNumber" class="w-full rounded-lg border border-border-strong bg-surface px-[0.95rem] py-3 font-body text-[0.92rem] text-ink-slate placeholder-ink-400 transition focus:border-emerald-accent focus:outline-none focus:ring-[3px] focus:ring-emerald-soft" placeholder="<%= t('form:trackingPlaceholder') %>" required>
+                <p class="mt-1.5 text-[0.78rem] text-ink-400"><%= t('form:trackingHint') %></p>
+            </div>
+            <div class="flex flex-col"><label for="shippingDate" class="mb-1.5 text-[0.82rem] font-semibold text-ink-slate"><%= t('form:shippingDateLabel') %></label><input type="date" id="shippingDate" name="shippingDate" class="w-full rounded-lg border border-border-strong bg-surface px-[0.95rem] py-3 font-body text-[0.92rem] text-ink-slate transition focus:border-emerald-accent focus:outline-none focus:ring-[3px] focus:ring-emerald-soft" required>
+                <p class="mt-1.5 text-[0.78rem] text-ink-400"><%= t('form:shippingDateHint') %></p>
+            </div><button type="submit" class="inline-flex w-full items-center justify-center gap-2 rounded-full bg-emerald-accent px-6 py-3 text-sm font-semibold text-white shadow-mf-sm transition hover:-translate-y-px hover:bg-emerald-dark hover:shadow-mf-md"><i class="fas fa-save"></i><%= t('new:submit') %></button>
+        </form>
+    </div>
+</main><%- include('layout/footer') %>

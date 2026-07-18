@@ -1,0 +1,17 @@
+{
+  "eyebrow": "Live tracking",
+  "trackingNumberLabel": "Tracking number",
+  "carrierLabel": "Carrier",
+  "shippedLabel": "Shipped",
+  "statusLabel": "Status",
+  "estimatedDeliveryLabel": "Estimated delivery",
+  "originLabel": "Origin",
+  "destinationLabel": "Destination",
+  "checkpointsTitle": "Checkpoint history",
+  "noCheckpoints": "No checkpoint history available yet.",
+  "errorTitle": "Couldn't reach the carrier",
+  "carrierResponseLabel": "Carrier response",
+  "traceIdLabel": "Trace ID",
+  "unsupportedTitle": "Live tracking isn't available",
+  "unsupportedBody": "There's no live tracking integration for this carrier yet. Here's what we have on record."
+}
